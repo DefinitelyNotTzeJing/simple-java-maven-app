@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                bat 'jenkins\\scripts\\deliver.bat' 
+                bat 'jenkins\\scripts\\deliver.bat'
                 // (create a deliver.bat if you don't have one)
             }
         }
