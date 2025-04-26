@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven_3.9.9'  // Name as configured in Jenkins' Global Tool Configuration
+    }
     stages {
         stage('Checkout') {
             steps {
