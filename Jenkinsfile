@@ -1,12 +1,14 @@
 pipeline {
     agent any
-    options {
-        skipStagesAfterUnstable()
-    }
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'branch2', url: 'https://github.com/Alison0309/simple-java-maven-app.git'
+            }
+        }
         stage('Build') {
             steps {
-                bat 'mvn -B -DskipTests clean package'
+                bat 'mvn clean package -DskipTests'
             }
         }
         stage('Test') {
@@ -15,14 +17,26 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'target/surefire-reports/*.xml'  // This will show test results in Jenkins
                 }
             }
         }
-        stage('Deliver') { 
+        stage('Deploy') {
             steps {
-                bat 'jenkins\\scripts\\deliver.bat'
+                bat 'java -jar target\\my-app-1.0-SNAPSHOT.jar'
             }
+        }
+    }
+    post {
+        always {
+            echo 'Cleaning up workspace'
+            deleteDir() // Clean up the workspace after the build
+        }
+        success {
+            echo 'Build succeeded!!!'
+        }
+        failure {
+            echo 'Build failed!'
         }
     }
 }
