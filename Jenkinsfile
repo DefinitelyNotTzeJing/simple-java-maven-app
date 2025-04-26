@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn clean package -DskipTests'
+                bat '"%MAVEN_HOME%\\bin\\mvn" clean package -DskipTests'
             }
         }
         stage('Test') {
