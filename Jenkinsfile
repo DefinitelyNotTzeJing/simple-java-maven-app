@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         jdk 'JDK17'
-        maven 'Maven_3.9.9'  // Name as configured in Jenkins' Global Tool Configuration
+        maven 'Maven_3.9.9'  // Name as configured in Jenkins Global Tool Configuration
     }
     stages {
         stage('Checkout') {
@@ -21,7 +21,7 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'  // This will show test results in Jenkins
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
@@ -33,8 +33,10 @@ pipeline {
     }
     post {
         always {
+            echo 'Stopping Java App (if running)'
+            bat 'taskkill /F /IM java.exe || exit 0'
             echo 'Cleaning up workspace'
-            deleteDir() // Clean up the workspace after the build
+            deleteDir()
         }
         success {
             echo 'Build succeeded!!!'
