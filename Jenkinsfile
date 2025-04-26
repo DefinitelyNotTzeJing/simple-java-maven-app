@@ -25,20 +25,20 @@ pipeline {
                 }
             }
         }
-        // stage('Deploy') {
-        //     steps {
-        //         bat 'start /b java -jar target\\my-app-1.0-SNAPSHOT.jar'
-        //     }
-        // }
+        stage('Deliver') {
+            steps {
+                bat 'jenkins\\scripts\\deliver.bat' 
+                // (create a deliver.bat if you don't have one)
+            }
+        }
     }
     post {
         always {
             echo 'Cleaning up workspace'
-            cleanWs() // Clean up the workspace after the build
+            deleteDir() // Clean up the workspace after the build
         }
         success {
-            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-            echo 'Build and Package Successful!'
+            echo 'Build succeeded!!!'
         }
         failure {
             echo 'Build failed!'
