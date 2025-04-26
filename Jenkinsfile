@@ -25,19 +25,20 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            steps {
-                bat 'start /b java -jar target\\my-app-1.0-SNAPSHOT.jar'
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         bat 'start /b java -jar target\\my-app-1.0-SNAPSHOT.jar'
+        //     }
+        // }
     }
     post {
         always {
             echo 'Cleaning up workspace'
-            deleteDir() // Clean up the workspace after the build
+            cleanWs() // Clean up the workspace after the build
         }
         success {
-            echo 'Build succeeded!!!'
+            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            echo 'Build and Package Successful!'
         }
         failure {
             echo 'Build failed!'
