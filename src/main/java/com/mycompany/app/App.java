@@ -1,9 +1,11 @@
 package com.mycompany.app;
 
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.port;
+import static spark.Spark.post;
 
 public class App {
-    private static final String MESSAGE = "Hello from Spark Web Server!";
+    private static final String MESSAGE = "Hello from Spark Server!";
 
     public App() {}
 
