@@ -6,22 +6,25 @@ import static spark.Spark.post;
 
 public class App {
 
-    private static final String MESSAGE = "Hello from Spark Web Server! Welcome to the world of Java!";
+    private static final String MESSAGE = "Hello from Spark Web Server!!!";
 
     public App() {}
 
     public static void main(String[] args) {
-        port(8082);  // Listen on port 8082
+        port(8082);  // Ensures the app is listening on port 8082 (or any port you want)
 
-        // Handle GET request on "/"
+        // Handle GET requests at '/'
         get("/", (req, res) -> MESSAGE);
 
-        // Handle POST request for GitHub webhook
-        post("/github-webhook/", (req, res) -> {
-            System.out.println("Webhook received:");
-            System.out.println(req.body()); // Print the JSON payload from GitHub
-            res.status(200);  // Respond with OK
-            return "Webhook received!";
+        // Handle POST requests at '/github-webhook/'
+        post("/github-webhook", (req, res) -> {
+            String payload = req.body();  // Get the raw body from the POST request
+            System.out.println("Received webhook payload: " + payload);  // Log the payload for debugging
+
+            // You can add logic to process the webhook payload here
+            // For now, return a response indicating that the webhook was received
+            res.status(200);  // Set status code to 200 OK
+            return "Webhook received";
         });
     }
 
