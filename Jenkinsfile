@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven_3.9.9'  // MUST match the name you gave in Jenkins global config
-    }
     stages {
         stage('Checkout') {
             steps {
@@ -11,7 +8,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat '"%MAVEN_HOME%\\bin\\mvn" clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
         stage('Test') {
