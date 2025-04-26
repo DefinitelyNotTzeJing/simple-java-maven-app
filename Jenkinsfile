@@ -7,27 +7,31 @@ pipeline {
             }
         }
         stage('Build') {
-            steps { bat 'start gradlew build'}
+            steps {
+                bat 'mvn clean package -DskipTests'
+            }
         }
         stage('Test') {
-            steps { bat 'start gradlew test'}
+            steps {
+                bat 'mvn test'
+            }
         }
         stage('Deploy') {
-            steps { bat 'java -jar /target/my-app-1.0-SNAPSHOT.jar'}
+            steps {
+                bat 'java -jar target\\my-app-1.0-SNAPSHOT.jar'
+            }
         }
     }
     post {
         always {
             echo 'Cleaning up workspace'
-            deleteDir() // Clean up the workspace after the build
+            deleteDir()
         }
         success {
             echo 'Build succeeded!!!'
-            // You could add notification steps here
         }
         failure {
             echo 'Build failed!'
-            // You could add notification steps here
         }
     }
 }
