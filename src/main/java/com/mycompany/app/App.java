@@ -1,11 +1,9 @@
 package com.mycompany.app;
 
-import static spark.Spark.get;
-import static spark.Spark.port;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 public class App {
-    private static final String MESSAGE = "Hello from Spark Web Server! Welcome to the world of Java!";
+    private static final String MESSAGE = "Hello from Spark Web Server!";
 
     public static void main(String[] args) {
         port(8082);
