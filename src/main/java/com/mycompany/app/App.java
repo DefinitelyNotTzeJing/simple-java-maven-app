@@ -14,6 +14,10 @@ public class App {
         get("/", (req, res) -> MESSAGE);
     }
 
+    public int addNumbers(int a, int b) {
+        return a + b;
+    }
+    
     public String getMessage() {
         return MESSAGE;
     }
