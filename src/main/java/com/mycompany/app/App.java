@@ -36,4 +36,9 @@ public class App {
     public int getMessageLength() {
         return MESSAGE.length();
     }
+
+    // New simple function 2
+    public String getMessageUpperCase() {
+        return MESSAGE.toUpperCase();
+    }
 }
