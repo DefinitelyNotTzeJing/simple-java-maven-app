@@ -21,4 +21,10 @@ public class AppTest
         App app = new App();
         assertEquals("Hello from Spark Web Server!!!Come", app.getMessage());
     }
+
+    @Test
+    public void testAddNumbers() {
+        App app = new App();
+        assertEquals(5, app.addNumbers(2, 3));
+    }
 }
