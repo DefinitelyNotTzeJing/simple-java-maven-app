@@ -27,4 +27,11 @@ public class AppTest
         App app = new App();
         assertEquals(5, app.addNumbers(2, 3));
     }
+
+    @Test
+    public void testDoubleNumber() {
+        App app = new App();
+        int result = app.doubleNumber(7);
+        assertEquals(14, result);  // 7 * 2 = 14
+    }
 }
