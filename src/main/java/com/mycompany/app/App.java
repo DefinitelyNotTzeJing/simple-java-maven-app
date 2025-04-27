@@ -31,4 +31,9 @@ public class App {
     public String getMessage() {
         return MESSAGE;
     }
+
+    // New simple function
+    public int getMessageLength() {
+        return MESSAGE.length();
+    }
 }
