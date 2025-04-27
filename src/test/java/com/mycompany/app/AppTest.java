@@ -1,7 +1,6 @@
 package com.mycompany.app;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -20,6 +19,6 @@ public class AppTest
     public void testAppMessage()
     {
         App app = new App();
-        assertEquals("Hello from Spark Web Server!!!", app.getMessage());
+        assertEquals("Hello from Spark Web Server! Welcome to the Java world!", app.getMessage());
     }
 }
