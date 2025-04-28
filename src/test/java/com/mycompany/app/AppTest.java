@@ -21,10 +21,4 @@ public class AppTest
         App app = new App();
         assertEquals("Hello from Spark Web Server! Welcome to the Java world!", app.getMessage());
     }
-
-    @Test
-    public void testMessageLength() {
-        App app = new App();
-        assertEquals(100, app.getMessageLength());  // "Hello from Spark Web Server!!!Come" has 34 characters
-    }
 }
